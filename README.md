@@ -1,1 +1,1 @@
-# SortingPerformanceSimualtor
+# SortingPerformanceSimulator
