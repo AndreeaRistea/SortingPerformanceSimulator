@@ -21,7 +21,7 @@ namespace SortingPerformanceSimulator.Utils
             }
         }
 
-        public string GenerateTestFile(int size, int minValue = 0, int maxValue = 100000)
+        public string GenerateTestFile(int size, int minValue = 0, int maxValue = 1000000)
         {
             Random random = new Random();
             int[] numbers = new int[size];

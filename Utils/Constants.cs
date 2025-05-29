@@ -12,6 +12,7 @@ namespace SortingPerformanceSimulator.Utils
         public string dataSetMedium = "C:\\Users\\Andreea Ristea\\Desktop\\Master1\\MEvPerf\\ConsoleApp1\\TestFiles\\Test_1000_elements.txt";
         public string dataSetBig = "C:\\Users\\Andreea Ristea\\Desktop\\Master1\\MEvPerf\\ConsoleApp1\\TestFiles\\Test_10000_elements.txt";
         public string dataSetLargest = "C:\\Users\\Andreea Ristea\\Desktop\\Master1\\MEvPerf\\ConsoleApp1\\TestFiles\\Test_100000_elements.txt";
+        public string dataSetExtraLargest = "C:\\Users\\Andreea Ristea\\Desktop\\Master1\\MEvPerf\\ConsoleApp1\\TestFiles\\Test_1000000_elements.txt";
 
         public string outputBubbleSort = "C:\\Users\\Andreea Ristea\\Desktop\\Master1\\MEvPerf\\ConsoleApp1\\Results\\BubbleSort-Result.txt";
         public string outputMergeSort = "C:\\Users\\Andreea Ristea\\Desktop\\Master1\\MEvPerf\\ConsoleApp1\\Results\\MergeSort-Result.txt";

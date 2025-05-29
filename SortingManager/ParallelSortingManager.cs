@@ -30,30 +30,34 @@ namespace SortingPerformanceSimulator.SortingManager
 
         public void RunParallelBubbleSort(Constants constants)
         {
-            bubbleSort.RunFromFile(constants.dataSetMedium);
-            bubbleSort.RunFromFile(constants.dataSetBig);
-            bubbleSort.RunFromFile(constants.dataSetLargest);
+            //bubbleSort.RunFromFile(constants.dataSetMedium);
+            //bubbleSort.RunFromFile(constants.dataSetBig);
+            //bubbleSort.RunFromFile(constants.dataSetLargest);
+           // bubbleSort.RunFromFile(constants.dataSetExtraLargest);
         }
 
         public void RunParallelHeapSort(Constants constants)
         {
-            heapSort.RunFromFile(constants.dataSetMedium);
-            heapSort.RunFromFile(constants.dataSetBig);
-            heapSort.RunFromFile(constants.dataSetLargest);
+            //heapSort.RunFromFile(constants.dataSetMedium);
+            //heapSort.RunFromFile(constants.dataSetBig);
+            //heapSort.RunFromFile(constants.dataSetLargest);
+            heapSort.RunFromFile(constants.dataSetExtraLargest);
         }
 
         public void RunParallelMergeSort(Constants constants)
         {
-            mergeSort.RunFromFile(constants.dataSetMedium);
-            mergeSort.RunFromFile(constants.dataSetBig);
-            mergeSort.RunFromFile(constants.dataSetLargest);
+            //mergeSort.RunFromFile(constants.dataSetMedium);
+            //mergeSort.RunFromFile(constants.dataSetBig);
+            //mergeSort.RunFromFile(constants.dataSetLargest);
+             mergeSort.RunFromFile(constants.dataSetExtraLargest);
         }
 
         public void RunParallelQuickSort(Constants constants)
         {
-            quickSort.RunFromFile(constants.dataSetMedium);
-            quickSort.RunFromFile(constants.dataSetBig);
-            quickSort.RunFromFile(constants.dataSetLargest);
+            //quickSort.RunFromFile(constants.dataSetMedium);
+            //quickSort.RunFromFile(constants.dataSetBig);
+            //quickSort.RunFromFile(constants.dataSetLargest);
+            quickSort.RunFromFile(constants.dataSetExtraLargest);
         }
     }
 }

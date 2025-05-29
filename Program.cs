@@ -28,24 +28,24 @@ class Program
         var parallelSortingManager = new ParallelSortingManager(bubbleParallel, heapSortParallel,
             mergeSortParallel, quickSortParallel);
 
-        // sequentialSortingManager.RunSequentialBubbleSort(constants);
-        // parallelSortingManager.RunParallelBubbleSort(constants);
+        //sequentialSortingManager.RunSequentialBubbleSort(constants);
+        //parallelSortingManager.RunParallelBubbleSort(constants);
 
-        // sequentialSortingManager.RunSequentialHeapSort(constants);
-        // parallelSortingManager.RunParallelHeapSort(constants);
+        sequentialSortingManager.RunSequentialHeapSort(constants);
+        parallelSortingManager.RunParallelHeapSort(constants);
 
         sequentialSortingManager.RunSequentialQuickSort(constants);
         parallelSortingManager.RunParallelQuickSort(constants);
 
-        // sequentialSortingManager.RunSequentialMergeSort(constants);
-        // parallelSortingManager.RunParallelMergeSort(constants);
+        sequentialSortingManager.RunSequentialMergeSort(constants);
+        parallelSortingManager.RunParallelMergeSort(constants);
 
         // var sortHelper = new SortHelper();
-        // var generator = new TestFileGenerator(constants.dataSetLoc);
+        //var generator = new TestFileGenerator(constants.dataSetLoc);
 
         // generator.GenerateTestFile(1000);
         // generator.GenerateTestFile(10000);
-        // generator.GenerateTestFile(100_000_000);
+        //generator.GenerateTestFile(1_000_000);
 
         //Console.WriteLine("Fișierele de test au fost generate.");
 
@@ -53,7 +53,7 @@ class Program
         //var bubbleParallel = new BubbleSortParallel(sortHelper);
 
         //bubbleSequential.RunFromFile(constants.dataSetMedium);
- 
+
         //await bubbleParallel.RunFromFileAsync(constants.dataSetMedium);
 
         //bubbleSequential.RunFromFile(constants.dataSetBig);

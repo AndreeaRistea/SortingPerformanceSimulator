@@ -1,6 +1,7 @@
 ﻿using SortingPerformanceSimulator.Interfaces;
 using SortingPerformanceSimulator.Utils;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace SortingPerformanceSimulator.Algortihms.Parallel
 {
@@ -13,7 +14,21 @@ namespace SortingPerformanceSimulator.Algortihms.Parallel
             this.sortHelper = sortHelper;
         }
 
-        public static void Sort(int[] array, int left, int right)
+        //public static void Sort(int[] array, int left, int right)
+        //{
+        //    if (left >= right)
+        //        return;
+
+        //    int pivotIndex = Partition(array, left, right);
+
+        //    System.Threading.Tasks.Parallel.Invoke(
+        //        () => Sort(array, left, pivotIndex - 1),
+        //        () => Sort(array, pivotIndex + 1, right)
+        //    );
+        //}
+
+
+        public static async Task  Sort(int[] array, int left, int right)
         {
             if (left >= right)
                 return;
@@ -21,8 +36,8 @@ namespace SortingPerformanceSimulator.Algortihms.Parallel
             int pivotIndex = Partition(array, left, right);
 
             System.Threading.Tasks.Parallel.Invoke(
-                () => Sort(array, left, pivotIndex - 1),
-                () => Sort(array, pivotIndex + 1, right)
+                async () => await Sort(array, left, pivotIndex - 1),
+                async () => await Sort(array, pivotIndex + 1, right)
             );
         }
 
@@ -67,7 +82,7 @@ namespace SortingPerformanceSimulator.Algortihms.Parallel
 
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            Sort(arr, 0, arr.Length - 1);
+            Sort(arr, 0, arr.Length - 1).Wait();
             stopwatch.Stop();
 
             double executionTime = stopwatch.Elapsed.TotalSeconds;
