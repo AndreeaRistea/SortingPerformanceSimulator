@@ -5,7 +5,7 @@ using SortingPerformanceSimulator.Utils;
 
 class Program
 {
-    static async Task Main()
+    static void Main()
     {
         var constants = new Constants();
         var sortHelper = new SortHelper();
@@ -28,24 +28,24 @@ class Program
         var parallelSortingManager = new ParallelSortingManager(bubbleParallel, heapSortParallel,
             mergeSortParallel, quickSortParallel);
 
-        sequentialSortingManager.RunSequentialBubbleSort(constants);
-        await parallelSortingManager.RunParallelBubbleSortAsync(constants);
+        // sequentialSortingManager.RunSequentialBubbleSort(constants);
+        // parallelSortingManager.RunParallelBubbleSort(constants);
 
-        //sequentialSortingManager.RunSequentialHeapSort(constants);
-        //await parallelSortingManager.RunParallelHeapSortAsync(constants);
+        // sequentialSortingManager.RunSequentialHeapSort(constants);
+        // parallelSortingManager.RunParallelHeapSort(constants);
 
-        //sequentialSortingManager.RunSequentialQuickSort(constants);
-        //await parallelSortingManager.RunParallelQuickSortAsync(constants);
+        sequentialSortingManager.RunSequentialQuickSort(constants);
+        parallelSortingManager.RunParallelQuickSort(constants);
 
-        //sequentialSortingManager.RunSequentialMergeSort(constants);
-        //await parallelSortingManager.RunParallelMergeSortAsync(constants);
+        // sequentialSortingManager.RunSequentialMergeSort(constants);
+        // parallelSortingManager.RunParallelMergeSort(constants);
 
-        //var sortHelper = new SortHelper();
-        //var generator = new TestFileGenerator(constants.dataSetLoc);
+        // var sortHelper = new SortHelper();
+        // var generator = new TestFileGenerator(constants.dataSetLoc);
 
-        //generator.GenerateTestFile(1000);
-        //generator.GenerateTestFile(10000);
-        //generator.GenerateTestFile(100000);
+        // generator.GenerateTestFile(1000);
+        // generator.GenerateTestFile(10000);
+        // generator.GenerateTestFile(100_000_000);
 
         //Console.WriteLine("Fișierele de test au fost generate.");
 
@@ -78,7 +78,5 @@ class Program
         //heapSortSequential.RunFromFile(constants.dataSetLargest);
 
         //await heapSortParallel.RunFromFileAsync(constants.dataSetLargest);
-
-
     }
 }

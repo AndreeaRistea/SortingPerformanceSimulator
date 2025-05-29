@@ -7,22 +7,23 @@ namespace SortingPerformanceSimulator.Algortihms.Parallel
     public class QuickSortParallel
     {
         private readonly ISortHelper sortHelper;
+
         public QuickSortParallel(ISortHelper sortHelper)
         {
             this.sortHelper = sortHelper;
         }
-        public static async Task SortAsync(int[] array, int left, int right)
+
+        public static void Sort(int[] array, int left, int right)
         {
             if (left >= right)
                 return;
 
             int pivotIndex = Partition(array, left, right);
 
-            // Recursively sort left and right halves in parallel
-            Task leftTask = SortAsync(array, left, pivotIndex - 1);
-            Task rightTask = SortAsync(array, pivotIndex + 1, right);
-
-            await Task.WhenAll(leftTask, rightTask);
+            System.Threading.Tasks.Parallel.Invoke(
+                () => Sort(array, left, pivotIndex - 1),
+                () => Sort(array, pivotIndex + 1, right)
+            );
         }
 
         public static int Partition(int[] array, int left, int right)
@@ -51,7 +52,7 @@ namespace SortingPerformanceSimulator.Algortihms.Parallel
             array[j] = temp;
         }
 
-        public async Task RunFromFileAsync(string filePath)
+        public void RunFromFile(string filePath)
         {
             if (string.IsNullOrWhiteSpace(filePath))
                 throw new ArgumentNullException(nameof(filePath));
@@ -66,7 +67,7 @@ namespace SortingPerformanceSimulator.Algortihms.Parallel
 
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            await SortAsync(arr, 0, arr.Length - 1);
+            Sort(arr, 0, arr.Length - 1);
             stopwatch.Stop();
 
             double executionTime = stopwatch.Elapsed.TotalSeconds;

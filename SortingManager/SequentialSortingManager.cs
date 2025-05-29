@@ -24,8 +24,8 @@ namespace SortingPerformanceSimulator.SortingManager
 
         public void RunSequentialBubbleSort (Constants constants)
         {
-            //bubbleSort.RunFromFile(constants.dataSetMedium);
-            //bubbleSort.RunFromFile(constants.dataSetBig);
+            bubbleSort.RunFromFile(constants.dataSetMedium);
+            bubbleSort.RunFromFile(constants.dataSetBig);
             bubbleSort.RunFromFile(constants.dataSetLargest);  
         }
 

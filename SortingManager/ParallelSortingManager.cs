@@ -28,32 +28,32 @@ namespace SortingPerformanceSimulator.SortingManager
             this.quickSort = quickSort;
         }
 
-        public async Task RunParallelBubbleSortAsync(Constants constants)
+        public void RunParallelBubbleSort(Constants constants)
         {
-            //await bubbleSort.RunFromFileAsync(constants.dataSetMedium);
-            //await bubbleSort.RunFromFileAsync(constants.dataSetBig);
-            await bubbleSort.RunFromFileAsync(constants.dataSetLargest);
+            bubbleSort.RunFromFile(constants.dataSetMedium);
+            bubbleSort.RunFromFile(constants.dataSetBig);
+            bubbleSort.RunFromFile(constants.dataSetLargest);
         }
 
-        public async Task RunParallelHeapSortAsync(Constants constants)
+        public void RunParallelHeapSort(Constants constants)
         {
-            await heapSort.RunFromFileAsync(constants.dataSetMedium);
-            await heapSort.RunFromFileAsync(constants.dataSetBig);
-            await heapSort.RunFromFileAsync(constants.dataSetLargest);
+            heapSort.RunFromFile(constants.dataSetMedium);
+            heapSort.RunFromFile(constants.dataSetBig);
+            heapSort.RunFromFile(constants.dataSetLargest);
         }
 
-        public async Task RunParallelMergeSortAsync(Constants constants)
+        public void RunParallelMergeSort(Constants constants)
         {
-            await mergeSort.RunFromFileAsync(constants.dataSetMedium);
-            await mergeSort.RunFromFileAsync(constants.dataSetBig);
-            await mergeSort.RunFromFileAsync(constants.dataSetLargest);
+            mergeSort.RunFromFile(constants.dataSetMedium);
+            mergeSort.RunFromFile(constants.dataSetBig);
+            mergeSort.RunFromFile(constants.dataSetLargest);
         }
 
-        public async Task RunParallelQuickSortAsync(Constants constants)
+        public void RunParallelQuickSort(Constants constants)
         {
-            await quickSort.RunFromFileAsync(constants.dataSetMedium);
-            await quickSort.RunFromFileAsync(constants.dataSetBig);
-            await quickSort.RunFromFileAsync(constants.dataSetLargest);
+            quickSort.RunFromFile(constants.dataSetMedium);
+            quickSort.RunFromFile(constants.dataSetBig);
+            quickSort.RunFromFile(constants.dataSetLargest);
         }
     }
 }

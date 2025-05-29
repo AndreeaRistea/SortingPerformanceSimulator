@@ -34,34 +34,27 @@ namespace SortingPerformanceSimulator.Algortihms.Parallel
             }
         }
 
-        static async Task SortAsync(int[] array)
+        static void Sort(int[] array)
         {
             int n = array.Length;
 
-            // Build heap in parallel (bottom-up heapify)
-            var tasks = new Task[n / 2];
-            for (int i = n / 2 - 1; i >= 0; i--)
+            int maxDepth = (int)Math.Log2(n);
+            for (int depth = maxDepth; depth >= 0; depth--)
             {
-                int idx = i;
-                tasks[i] = Task.Run(() => Heapify(array, n, idx));
+                int start = (1 << depth) - 1;
+                int end = Math.Min((1 << (depth + 1)) - 2, n - 1);
+
+                System.Threading.Tasks.Parallel.For(start, end + 1, i => Heapify(array, n, i));
             }
 
-            await Task.WhenAll(tasks);
-
-            // One by one extract elements (this part is inherently sequential)
-            for (int i = n - 1; i > 0; i--)
+            for (int i = n - 1; i >= 1; i--)
             {
-                // Swap
-                int temp = array[0];
-                array[0] = array[i];
-                array[i] = temp;
-
-                // Heapify root
-                Heapify(array, i, 0);
+                (array[0], array[i]) = (array[i], array[0]); // Swap
+                Heapify(array, i, 0); // Restore heap
             }
         }
 
-        public async Task RunFromFileAsync(string filePath)
+        public async void RunFromFile(string filePath)
         {
             if (string.IsNullOrWhiteSpace(filePath))
                 throw new ArgumentNullException(nameof(filePath));
@@ -76,7 +69,7 @@ namespace SortingPerformanceSimulator.Algortihms.Parallel
 
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            await SortAsync(arr);
+            Sort(arr);
             stopwatch.Stop();
             double executionTime = stopwatch.Elapsed.TotalSeconds;
 

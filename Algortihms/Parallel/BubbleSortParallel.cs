@@ -12,34 +12,39 @@ namespace SortingPerformanceSimulator.Algortihms.Parallel
             this.sortHelper = sortHelper;
         }
 
-        public async Task SortAsync(int[] array)
+        public void Sort(int[] array)
         {
             int n = array.Length;
+            bool swapped;
 
-            for (int pass = 0; pass < n; pass++)
+            do
             {
-                int start = pass % 2; // Even-odd pass alternation
-                var tasks = new List<Task>();
+                swapped = false;
 
-                for (int i = start; i < n - 1; i += 2)
+                System.Threading.Tasks.Parallel.For(1, n / 2 + 1, i =>
                 {
-                    int idx = i; // Capture loop variable for closure
-                    tasks.Add(Task.Run(() =>
+                    int j = 2 * i - 1;
+                    if (j < n - 1 && array[j] > array[j + 1])
                     {
-                        if (array[idx] > array[idx + 1])
-                        {
-                            // Swap
-                            int temp = array[idx];
-                            array[idx] = array[idx + 1];
-                            array[idx + 1] = temp;
-                        }
-                    }));
-                }
-                await Task.WhenAll(tasks);
-            }
+                        (array[j], array[j + 1]) = (array[j + 1], array[j]);
+                        swapped = true;
+                    }
+                });
+
+                System.Threading.Tasks.Parallel.For(0, n / 2, i =>
+                {
+                    int j = 2 * i;
+                    if (j < n - 1 && array[j] > array[j + 1])
+                    {
+                        (array[j], array[j + 1]) = (array[j + 1], array[j]);
+                        swapped = true;
+                    }
+                });
+
+            } while (swapped);
         }
 
-        public async Task RunFromFileAsync(string filePath)
+        public void RunFromFile(string filePath)
         {
             if (string.IsNullOrWhiteSpace(filePath))
                 throw new ArgumentNullException(nameof(filePath));
@@ -54,7 +59,7 @@ namespace SortingPerformanceSimulator.Algortihms.Parallel
 
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            await SortAsync(arr);
+            Sort(arr);
             stopwatch.Stop();
             double executionTime = stopwatch.Elapsed.TotalSeconds;
 

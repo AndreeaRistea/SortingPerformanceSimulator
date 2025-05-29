@@ -12,7 +12,7 @@ namespace SortingPerformanceSimulator.Algortihms.Parallel
             this.sortHelper = sortHelper;
         }
 
-        public static async Task SortAsync(int[] array, int left, int right)
+        public static void Sort(int[] array, int left, int right)
         {
             if (left >= right)
                 return;
@@ -20,10 +20,10 @@ namespace SortingPerformanceSimulator.Algortihms.Parallel
             int mid = (left + right) / 2;
 
             // Sort left and right halves in parallel
-            Task leftTask = SortAsync(array, left, mid);
-            Task rightTask = SortAsync(array, mid + 1, right);
-
-            await Task.WhenAll(leftTask, rightTask);
+            System.Threading.Tasks.Parallel.Invoke(
+                () => Sort(array, left, mid),
+                () => Sort(array, mid + 1, right)
+                );
 
             // Merge the sorted halves
             Merge(array, left, mid, right);
@@ -52,7 +52,7 @@ namespace SortingPerformanceSimulator.Algortihms.Parallel
                 array[left + t] = temp[t];
         }
 
-        public async Task RunFromFileAsync(string filePath)
+        public async void RunFromFile(string filePath)
         {
             if (string.IsNullOrWhiteSpace(filePath))
                 throw new ArgumentNullException(nameof(filePath));
@@ -67,7 +67,7 @@ namespace SortingPerformanceSimulator.Algortihms.Parallel
 
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            await SortAsync(arr, 0, arr.Length-1);
+            Sort(arr, 0, arr.Length-1);
             stopwatch.Stop();
 
             double executionTime = stopwatch.Elapsed.TotalSeconds;
